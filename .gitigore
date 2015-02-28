@@ -1,0 +1,5 @@
+build/classes
+build/libs
+build/test-results
+build/tmp
+.idea
