@@ -3,13 +3,12 @@ package validators.impl;
 import commands.ClothingActions;
 import commands.Person;
 import commands.Temperature;
-import validators.FailedIndex;
 import validators.ValidClothesForTemperature;
 import validators.ValidationElement;
 
 import java.util.List;
 
-public class ValidClothesForHotTemperature implements ValidClothesForTemperature<Person>, ValidationElement<Person>, FailedIndex<Person> {
+public class ValidClothesForHotTemperature implements ValidClothesForTemperature<Person>, ValidationElement<Person> {
     @Override
     public boolean validClothesForWeather(Person person) {
         List<ClothingActions> myClothes = person.getMyClothes();
@@ -37,6 +36,6 @@ public class ValidClothesForHotTemperature implements ValidClothesForTemperature
             return socksIndex > jacketIndex ? jacketIndex : socksIndex;
         }
 
-        return 0;
+        return -1;//TODO dont do this fix it
     }
 }

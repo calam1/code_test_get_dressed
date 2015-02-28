@@ -32,4 +32,9 @@ public class DuplicateClothesForPersonValidator implements DuplicateItemsValidat
             return true;
         }
     }
+
+    @Override
+    public int findIndexOfCollectionForValidationFailure(Person domain) {
+        return 0;
+    }
 }

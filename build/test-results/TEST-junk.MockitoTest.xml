@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="junk.MockitoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-02-27T14:58:07" hostname="ta54963-x-2.fry.int" time="0.017">
-  <properties/>
-  <testcase name="testQuery" classname="junk.MockitoTest" time="0.017"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

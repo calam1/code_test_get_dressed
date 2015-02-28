@@ -40,4 +40,9 @@ public class ClothingActionOrders implements ActionOrders<Person>, ValidationEle
     public boolean validate(Person person) {
         return areActionsInTheCorrectOrder(person);
     }
+
+    @Override
+    public int findIndexOfCollectionForValidationFailure(Person domain) {
+        return 0;
+    }
 }

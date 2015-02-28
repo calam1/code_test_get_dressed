@@ -44,4 +44,9 @@ public class LeaveTheHouseFullyClothedValidator implements LeaveTheHouseValidato
     public boolean validate(Person person) {
         return canILeaveTheHouse(person);
     }
+
+    @Override
+    public int findIndexOfCollectionForValidationFailure(Person domain) {
+        return 0;
+    }
 }

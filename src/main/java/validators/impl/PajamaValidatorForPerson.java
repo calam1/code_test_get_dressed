@@ -19,4 +19,9 @@ public class PajamaValidatorForPerson implements PajamaValidator<Person>, Valida
     public boolean validate(Person person) {
         return arePajamasOff(person);
     }
+
+    @Override
+    public int findIndexOfCollectionForValidationFailure(Person domain) {
+        return 0;
+    }
 }

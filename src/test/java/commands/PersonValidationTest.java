@@ -12,6 +12,7 @@ import validators.impl.ValidClothesForHotTemperature;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -22,7 +23,7 @@ public class PersonValidationTest {
 
     @Before
     public void setup() {
-        personValidation = new PersonValidationImpl();
+        personValidation = new PersonValidation();
 
         validationElements = new ArrayList<>();
         validationElements.add(new PajamaValidatorForPerson());
@@ -41,7 +42,7 @@ public class PersonValidationTest {
         person.addClothingActions(ClothingActions.FOOTWEAR);
         person.addClothingActions(ClothingActions.HEADWEAR);
 
-        boolean isValid = personValidation.validatePerson(person);
+        boolean isValid = personValidation.validate(person);
         assertFalse(isValid);
     }
 
@@ -58,9 +59,32 @@ public class PersonValidationTest {
         person.addClothingActions(ClothingActions.FOOTWEAR);
         person.addClothingActions(ClothingActions.LEAVE_HOUSE);
 
-        boolean isValid = personValidation.validatePerson(person);
+        boolean isValid = personValidation.validate(person);
         assertTrue(isValid);
     }
 
+    @Test
+    public void wore_Jacket_On_Hot_Day_Is_Invalid_Return_Index_Value_Of_First_Sight_Of_Problem() {
+        Person person = new Person(Temperature.HOT);
 
+        person.addClothingActions(ClothingActions.PAJAMAS);
+        person.addClothingActions(ClothingActions.FOOTWEAR);
+        person.addClothingActions(ClothingActions.SOCKS);
+
+        int problemIndex = personValidation.findInvalidIndexValue(person);
+        assertEquals(2, problemIndex);
+    }
+
+    @Test
+    public void wore_Jacket_And_Socks_On_Hot_Day_Is_Invalid_Return_Index_Value_Of_First_Sight_Of_Problem() {
+        Person person = new Person(Temperature.HOT);
+
+        person.addClothingActions(ClothingActions.PAJAMAS);
+        person.addClothingActions(ClothingActions.JACKET);
+        person.addClothingActions(ClothingActions.FOOTWEAR);
+        person.addClothingActions(ClothingActions.SOCKS);
+
+        int problemIndex = personValidation.findInvalidIndexValue(person);
+        assertEquals(1, problemIndex);
+    }
 }
