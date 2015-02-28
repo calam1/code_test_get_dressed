@@ -1,5 +1,5 @@
 package validators;
 
-public interface ValidClothesForTemperature<T> {
+public interface ClothesForTemperatureValidator<T> {
     boolean validClothesForWeather(T domain);
 }

@@ -46,7 +46,7 @@ public class LeaveTheHouseFullyClothedValidator implements LeaveTheHouseValidato
     }
 
     @Override
-    public int findIndexOfCollectionForValidationFailure(Person domain) {
+    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person domain) {
         return 0;
     }
 }

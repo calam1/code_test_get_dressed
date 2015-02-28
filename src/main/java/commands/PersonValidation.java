@@ -25,14 +25,14 @@ public class PersonValidation implements Validation<Person> {
     }
 
     @Override
-    public int findInvalidIndexValue(Person person) {
+    public int findInvalidIndexValueIfItExists(Person person) {
         for (ValidationElement<Person> validationElement : validationElements) {
             boolean valid = validationElement.validate(person);
             if (!valid){
-                return validationElement.findIndexOfCollectionForValidationFailure(person);
+                return validationElement.findInvalidItemIndexOrReturnCollectionSizeIfValid(person);
             }
         }
 
-        return -1;//TODO dont do this - fix throw exception
+        return person.getMyClothes().size();
     }
 }

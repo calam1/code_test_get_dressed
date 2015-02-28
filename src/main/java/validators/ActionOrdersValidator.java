@@ -1,5 +1,5 @@
 package validators;
 
-public interface ActionOrders<T> {
+public interface ActionOrdersValidator<T> {
     boolean areActionsInTheCorrectOrder(T domain);
 }

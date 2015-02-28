@@ -7,11 +7,11 @@ import validators.ValidationElement;
 
 import java.util.List;
 
-public class PajamaValidatorForPerson implements PajamaValidator<Person>, ValidationElement<Person> {
+public class PersonPajamaValidator implements PajamaValidator<Person>, ValidationElement<Person> {
     @Override
     public boolean arePajamasOff(Person person) {
         List<ClothingActions> myClothes = person.getMyClothes();
-        if (myClothes.get(0) != ClothingActions.PAJAMAS) return false;
+        if (myClothes.get(0) != ClothingActions.TAKE_OFF_PAJAMAS) return false;
         return true;
     }
 
@@ -21,7 +21,7 @@ public class PajamaValidatorForPerson implements PajamaValidator<Person>, Valida
     }
 
     @Override
-    public int findIndexOfCollectionForValidationFailure(Person domain) {
+    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person domain) {
         return 0;
     }
 }

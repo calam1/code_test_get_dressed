@@ -24,7 +24,7 @@ public class DuplicateClothesForPersonValidatorTest {
     public void only_One_Item_May_Be_Put_On() {
         Person person = new Person(Temperature.HOT);
 
-        person.addClothingActions(ClothingActions.FOOTWEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
 
@@ -35,9 +35,9 @@ public class DuplicateClothesForPersonValidatorTest {
     public void put_On_Footwear_Twice_Is_Invalid() {
         Person person = new Person(Temperature.COLD);
 
-        person.addClothingActions(ClothingActions.PAJAMAS);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
+        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
         assertTrue(doIHaveDuplicates);
@@ -47,10 +47,10 @@ public class DuplicateClothesForPersonValidatorTest {
     public void put_On_Footwear_Twice_And_Jacket_Once_Is_Invalid(){
         Person person = new Person(Temperature.COLD);
 
-        person.addClothingActions(ClothingActions.PAJAMAS);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
-        person.addClothingActions(ClothingActions.JACKET);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
+        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_JACKET);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
         assertTrue(doIHaveDuplicates);

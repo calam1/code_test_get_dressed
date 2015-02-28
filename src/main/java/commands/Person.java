@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
+
     private Temperature temperature;
     private List<ClothingActions> myClothes = new ArrayList<>();
 

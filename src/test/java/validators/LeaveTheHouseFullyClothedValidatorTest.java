@@ -23,7 +23,7 @@ public class LeaveTheHouseFullyClothedValidatorTest {
     public void trying_To_Leave_House_When_It_Is_Cold_Before_I_Am_Fully_Dressed_Is_Invalid(){
         Person person = new Person(Temperature.COLD);
 
-        person.addClothingActions(ClothingActions.PAJAMAS);
+        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
         person.addClothingActions(ClothingActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
@@ -35,13 +35,13 @@ public class LeaveTheHouseFullyClothedValidatorTest {
     public void trying_To_Leave_House_When_It_Is_Cold_And_I_Am_Fully_Dressed_Is_Valid(){
         Person person = new Person(Temperature.COLD);
 
-        person.addClothingActions(ClothingActions.PAJAMAS);
-        person.addClothingActions(ClothingActions.SOCKS);
-        person.addClothingActions(ClothingActions.SHIRT);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
-        person.addClothingActions(ClothingActions.HEADWEAR);
-        person.addClothingActions(ClothingActions.JACKET);
-        person.addClothingActions(ClothingActions.PANTS);
+        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
+        person.addClothingActions(ClothingActions.PUT_ON_SOCKS);
+        person.addClothingActions(ClothingActions.PUT_ON_SHIRT);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_HEAD_WEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_JACKET);
+        person.addClothingActions(ClothingActions.PUT_ON_PANTS);
         person.addClothingActions(ClothingActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
@@ -53,11 +53,11 @@ public class LeaveTheHouseFullyClothedValidatorTest {
     public void trying_To_Leave_House_When_It_Is_Hot_And_I_Am_Fully_Dressed_Is_Valid(){
         Person person = new Person(Temperature.HOT);
 
-        person.addClothingActions(ClothingActions.PAJAMAS);
-        person.addClothingActions(ClothingActions.SHIRT);
-        person.addClothingActions(ClothingActions.FOOTWEAR);
-        person.addClothingActions(ClothingActions.HEADWEAR);
-        person.addClothingActions(ClothingActions.PANTS);
+        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
+        person.addClothingActions(ClothingActions.PUT_ON_SHIRT);
+        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_HEAD_WEAR);
+        person.addClothingActions(ClothingActions.PUT_ON_PANTS);
         person.addClothingActions(ClothingActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
