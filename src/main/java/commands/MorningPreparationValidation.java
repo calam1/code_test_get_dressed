@@ -1,10 +1,11 @@
 package commands;
 
+import domains.Person;
 import validators.ValidationElement;
 
 import java.util.List;
 
-public class PersonValidation implements Validation<Person> {
+public class MorningPreparationValidation implements Validation<Person> {
     private List<ValidationElement<Person>> validationElements;
 
     @Override
@@ -33,6 +34,6 @@ public class PersonValidation implements Validation<Person> {
             }
         }
 
-        return person.getMyClothes().size();
+        return person.getMyMorningActions().size();
     }
 }

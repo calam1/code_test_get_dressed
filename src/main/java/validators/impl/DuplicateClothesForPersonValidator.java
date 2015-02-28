@@ -1,7 +1,7 @@
 package validators.impl;
 
-import commands.ClothingActions;
-import commands.Person;
+import commands.MorningActions;
+import domains.Person;
 import validators.DuplicateItemsValidator;
 import validators.ValidationElement;
 
@@ -10,11 +10,11 @@ import java.util.List;
 public class DuplicateClothesForPersonValidator implements DuplicateItemsValidator<Person>, ValidationElement<Person> {
     @Override
     public boolean hasDuplicateItems(Person person) {
-        List<ClothingActions> myClothes = person.getMyClothes();
+        List<MorningActions> myClothes = person.getMyMorningActions();
 
-        for (ClothingActions clothes : myClothes) {
+        for (MorningActions clothes : myClothes) {
             int counter = 0;
-            for (ClothingActions clothesItem : myClothes) {//TODO: replace with indexOf and lastIndexOf
+            for (MorningActions clothesItem : myClothes) {//TODO: replace with indexOf and lastIndexOf
                 if (clothes == clothesItem)
                     counter++;
             }

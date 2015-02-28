@@ -1,10 +1,12 @@
 package validators;
 
-import commands.ClothingActions;
-import commands.Person;
+import commands.MorningActions;
+import domains.Person;
 import commands.Temperature;
+import commands.Validation;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import validators.impl.LeaveTheHouseFullyClothedValidator;
 
 import static org.junit.Assert.assertFalse;
@@ -14,6 +16,9 @@ public class LeaveTheHouseFullyClothedValidatorTest {
 
     private LeaveTheHouseValidator<Person> leaveTheHouseValidator;
 
+    @Mock
+    private Validation<Person> personValidation;
+
     @Before
     public void setup() {
         leaveTheHouseValidator = new LeaveTheHouseFullyClothedValidator();
@@ -21,10 +26,10 @@ public class LeaveTheHouseFullyClothedValidatorTest {
 
     @Test
     public void trying_To_Leave_House_When_It_Is_Cold_Before_I_Am_Fully_Dressed_Is_Invalid(){
-        Person person = new Person(Temperature.COLD);
+        Person person = new Person(Temperature.COLD, personValidation);
 
-        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
-        person.addClothingActions(ClothingActions.LEAVE_HOUSE);
+        person.addMorningActions(MorningActions.TAKE_OFF_PAJAMAS);
+        person.addMorningActions(MorningActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
 
@@ -33,16 +38,16 @@ public class LeaveTheHouseFullyClothedValidatorTest {
 
     @Test
     public void trying_To_Leave_House_When_It_Is_Cold_And_I_Am_Fully_Dressed_Is_Valid(){
-        Person person = new Person(Temperature.COLD);
+        Person person = new Person(Temperature.COLD, personValidation);
 
-        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
-        person.addClothingActions(ClothingActions.PUT_ON_SOCKS);
-        person.addClothingActions(ClothingActions.PUT_ON_SHIRT);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_HEAD_WEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_JACKET);
-        person.addClothingActions(ClothingActions.PUT_ON_PANTS);
-        person.addClothingActions(ClothingActions.LEAVE_HOUSE);
+        person.addMorningActions(MorningActions.TAKE_OFF_PAJAMAS);
+        person.addMorningActions(MorningActions.PUT_ON_SOCKS);
+        person.addMorningActions(MorningActions.PUT_ON_SHIRT);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.PUT_ON_HEAD_WEAR);
+        person.addMorningActions(MorningActions.PUT_ON_JACKET);
+        person.addMorningActions(MorningActions.PUT_ON_PANTS);
+        person.addMorningActions(MorningActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
 
@@ -51,14 +56,14 @@ public class LeaveTheHouseFullyClothedValidatorTest {
 
     @Test
     public void trying_To_Leave_House_When_It_Is_Hot_And_I_Am_Fully_Dressed_Is_Valid(){
-        Person person = new Person(Temperature.HOT);
+        Person person = new Person(Temperature.HOT, personValidation);
 
-        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
-        person.addClothingActions(ClothingActions.PUT_ON_SHIRT);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_HEAD_WEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_PANTS);
-        person.addClothingActions(ClothingActions.LEAVE_HOUSE);
+        person.addMorningActions(MorningActions.TAKE_OFF_PAJAMAS);
+        person.addMorningActions(MorningActions.PUT_ON_SHIRT);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.PUT_ON_HEAD_WEAR);
+        person.addMorningActions(MorningActions.PUT_ON_PANTS);
+        person.addMorningActions(MorningActions.LEAVE_HOUSE);
 
         boolean canILeaveTheHouse = leaveTheHouseValidator.canILeaveTheHouse(person);
 

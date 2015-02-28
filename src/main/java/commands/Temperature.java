@@ -1,5 +1,12 @@
 package commands;
 
 public enum Temperature {
-    HOT,COLD;
+    HOT("HOT"),
+    COLD("COLD");
+
+    private final String temperature;
+
+    Temperature(String temperature) {
+        this.temperature = temperature;
+    }
 }

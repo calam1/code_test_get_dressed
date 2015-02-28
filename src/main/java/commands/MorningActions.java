@@ -2,7 +2,7 @@ package commands;
 
 import java.util.NoSuchElementException;
 
-public enum ClothingActions {
+public enum MorningActions {
 
     PUT_ON_FOOTWEAR("Sandals", "Boots"),
     PUT_ON_SOCKS("Fail", "Socks"),
@@ -16,7 +16,7 @@ public enum ClothingActions {
     private final String coldDesc;
     private final String hotDesc;
 
-    ClothingActions(String hotDesc, String coldDesc) {
+    MorningActions(String hotDesc, String coldDesc) {
         this.hotDesc = hotDesc;
         this.coldDesc = coldDesc;
     }
@@ -29,7 +29,7 @@ public enum ClothingActions {
         return coldDesc;
     }
 
-    public static ClothingActions getAction(int number){
+    public static MorningActions getAction(int number){
        switch(number){
            case 1 :
                return PUT_ON_FOOTWEAR;
@@ -48,7 +48,7 @@ public enum ClothingActions {
            case 8 :
                return TAKE_OFF_PAJAMAS;
            default :
-               throw new NoSuchElementException("You have provided an invalid argument there is no such value as: " + number);
+               throw new NoSuchElementException("You have provided an invalid argument there is no such value as: " + number);//TODO: test this
        }
     }
 

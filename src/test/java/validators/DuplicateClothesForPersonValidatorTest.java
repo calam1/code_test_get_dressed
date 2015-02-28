@@ -1,11 +1,13 @@
 package validators;
 
 
-import commands.ClothingActions;
-import commands.Person;
+import commands.MorningActions;
+import domains.Person;
 import commands.Temperature;
+import commands.Validation;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import validators.impl.DuplicateClothesForPersonValidator;
 
 import static org.junit.Assert.assertFalse;
@@ -15,6 +17,9 @@ public class DuplicateClothesForPersonValidatorTest {
 
     private DuplicateItemsValidator<Person> duplicateItemsValidator;
 
+    @Mock
+    private Validation<Person> personValidation;
+
     @Before
     public void setup() {
         duplicateItemsValidator = new DuplicateClothesForPersonValidator();
@@ -22,9 +27,9 @@ public class DuplicateClothesForPersonValidatorTest {
 
     @Test
     public void only_One_Item_May_Be_Put_On() {
-        Person person = new Person(Temperature.HOT);
+        Person person = new Person(Temperature.HOT, personValidation);
 
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
 
@@ -33,11 +38,11 @@ public class DuplicateClothesForPersonValidatorTest {
 
     @Test
     public void put_On_Footwear_Twice_Is_Invalid() {
-        Person person = new Person(Temperature.COLD);
+        Person person = new Person(Temperature.COLD, personValidation);
 
-        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.TAKE_OFF_PAJAMAS);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
         assertTrue(doIHaveDuplicates);
@@ -45,12 +50,12 @@ public class DuplicateClothesForPersonValidatorTest {
 
     @Test
     public void put_On_Footwear_Twice_And_Jacket_Once_Is_Invalid(){
-        Person person = new Person(Temperature.COLD);
+        Person person = new Person(Temperature.COLD, personValidation);
 
-        person.addClothingActions(ClothingActions.TAKE_OFF_PAJAMAS);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
-        person.addClothingActions(ClothingActions.PUT_ON_JACKET);
-        person.addClothingActions(ClothingActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.TAKE_OFF_PAJAMAS);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
+        person.addMorningActions(MorningActions.PUT_ON_JACKET);
+        person.addMorningActions(MorningActions.PUT_ON_FOOTWEAR);
 
         boolean doIHaveDuplicates = duplicateItemsValidator.hasDuplicateItems(person);
         assertTrue(doIHaveDuplicates);
