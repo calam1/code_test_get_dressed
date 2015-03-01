@@ -1,4 +1,9 @@
 # code_test_get_dressed
+
+You may complete this test in the language of your choosing.  When submitting your solution please provide all source code, tests, and all necessary files/libraries for building and running your solution.
+Organize your solution however you choose, but, assume that this code will be deployed to production and maintained by others in the future.
+Your solution will be reviewed based on the correctness of the outputs, use of Object Oriented Principals, code legibility, ease of maintenance, use of tests, and proper use of design patterns used.
+
 Problem:  You must get fully dressed before leaving the house 
 Rules: 
 
