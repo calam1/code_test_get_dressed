@@ -25,3 +25,32 @@ Input: Temperature (HOT or COLD) followed by a comma separated list of numeric c
 |6 |Put on pants |“Shorts” |“Pants”| 
 |7 |Leave house |“Leaving house” |“Leaving house”| 
 |8 |Take off PJ’s |“Removing PJ’s” |“Removing PJ’s”|
+
+
+Example scenarios:
+Success:
+Input: HOT 8 6 4 2 1 7
+Output: Removing PJ’s Shorts Shirt Sunglasses Sandals Leaving House
+
+Input: COLD 8 6 3 4 2 5 1 7
+Output: Removing PJ’s Pants Socks Shirt Hat Jacket Boots Leaving House
+
+Failure:
+Input: HOT 7
+Output: Fail
+
+Input: HOT 8 6 6
+Output: Removing PJ’s shorts fail
+
+Input: HOT 8 6 3
+Output: Removing PJ’s shorts fail
+
+Input: COLD 8 6 3 4 2 5 7
+Output: Removing PJ’s Pants Socks Shirt Hat Jacket Fail
+
+Input: COLD 8, 6, 3, 4, 2, 5, 1
+Output: Removing PJ’s, Pants, Socks, Shirt, Hat, Jacket, Boots, Fail
+
+Input: COLD 6
+Output: Fail
+
