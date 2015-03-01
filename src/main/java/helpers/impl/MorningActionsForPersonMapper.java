@@ -1,7 +1,8 @@
-package factory;
+package helpers.impl;
 
 import commands.MorningActions;
 import domains.Person;
+import helpers.Mapper;
 
 public class MorningActionsForPersonMapper implements Mapper<Person> {
     @Override

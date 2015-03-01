@@ -29,6 +29,13 @@ public enum MorningActions {
         return coldDesc;
     }
 
+    public String getDescription(Temperature temperature){
+        if (temperature == Temperature.COLD)
+            return getColdDesc();
+        else {
+            return getHotDesc();
+        }
+    }
     public static MorningActions getAction(int number){
        switch(number){
            case 1 :

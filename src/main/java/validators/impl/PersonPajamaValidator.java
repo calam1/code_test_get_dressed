@@ -10,8 +10,8 @@ import java.util.List;
 public class PersonPajamaValidator implements PajamaValidator<Person>, ValidationElement<Person> {
     @Override
     public boolean arePajamasOff(Person person) {
-        List<MorningActions> myClothes = person.getMyMorningActions();
-        if (myClothes.get(0) != MorningActions.TAKE_OFF_PAJAMAS) return false;
+        List<MorningActions> morningActions = person.getMyMorningActions();
+        if (morningActions.get(0) != MorningActions.TAKE_OFF_PAJAMAS) return false;
         return true;
     }
 
@@ -21,7 +21,13 @@ public class PersonPajamaValidator implements PajamaValidator<Person>, Validatio
     }
 
     @Override
-    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person domain) {
-        return 0;
+    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person person) {
+        if (!validate(person)) {
+            List<MorningActions> morningActions = person.getMyMorningActions();
+            if (morningActions.get(0) != MorningActions.TAKE_OFF_PAJAMAS)
+                return morningActions.indexOf(MorningActions.TAKE_OFF_PAJAMAS);
+        }
+
+        return person.getMyMorningActions().size();
     }
 }

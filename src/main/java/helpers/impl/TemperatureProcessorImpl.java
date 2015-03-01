@@ -1,6 +1,7 @@
-package factory;
+package helpers.impl;
 
 import commands.Temperature;
+import helpers.TemperatureProcessor;
 
 public class TemperatureProcessorImpl implements TemperatureProcessor {
     @Override

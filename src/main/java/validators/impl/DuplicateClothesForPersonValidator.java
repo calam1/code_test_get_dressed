@@ -10,11 +10,11 @@ import java.util.List;
 public class DuplicateClothesForPersonValidator implements DuplicateItemsValidator<Person>, ValidationElement<Person> {
     @Override
     public boolean hasDuplicateItems(Person person) {
-        List<MorningActions> myClothes = person.getMyMorningActions();
+        List<MorningActions> morningActions = person.getMyMorningActions();
 
-        for (MorningActions clothes : myClothes) {
+        for (MorningActions clothes : morningActions) {
             int counter = 0;
-            for (MorningActions clothesItem : myClothes) {//TODO: replace with indexOf and lastIndexOf
+            for (MorningActions clothesItem : morningActions) {
                 if (clothes == clothesItem)
                     counter++;
             }
@@ -34,7 +34,20 @@ public class DuplicateClothesForPersonValidator implements DuplicateItemsValidat
     }
 
     @Override
-    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person domain) {
-        return 0;
+    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person person) {
+        if (!validate(person)){
+            List<MorningActions> morningActions = person.getMyMorningActions();
+
+            for (MorningActions clothes : morningActions) {
+                int counter = 0;
+                for (MorningActions clothesItem : morningActions) {
+                    if (clothes == clothesItem)
+                        counter++;
+                }
+                if (counter > 1) return morningActions.lastIndexOf(clothes);
+            }
+        }
+
+        return person.getMyMorningActions().size();
     }
 }

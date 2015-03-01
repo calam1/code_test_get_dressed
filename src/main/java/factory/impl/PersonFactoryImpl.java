@@ -1,9 +1,14 @@
-package factory;
+package factory.impl;
 
-import commands.MorningActions;
 import commands.Temperature;
 import commands.Validation;
 import domains.Person;
+import factory.PersonFactory;
+import factory.ValidationFactory;
+import helpers.Mapper;
+import helpers.TemperatureProcessor;
+
+import java.util.Arrays;
 
 public class PersonFactoryImpl implements PersonFactory {
 
@@ -25,7 +30,8 @@ public class PersonFactoryImpl implements PersonFactory {
         Temperature temperature = temperatureProcessor.mapTemperature(values[0]);
         Validation<Person> morningPreparationValidation = personValidationFactory.createValidations();
         Person person = new Person(temperature, morningPreparationValidation);
-        personMapper.mapPassedInValuesToActions(values, person);
+        String [] actions = Arrays.copyOfRange(values, 1, values.length);//exclude the temperature
+        personMapper.mapPassedInValuesToActions(actions, person);
 
         return person;
     }

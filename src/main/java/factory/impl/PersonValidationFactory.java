@@ -1,8 +1,9 @@
-package factory;
+package factory.impl;
 
 import commands.MorningPreparationValidation;
 import commands.Validation;
 import domains.Person;
+import factory.ValidationFactory;
 import validators.ValidationElement;
 import validators.impl.ClothesForHotTemperatureValidator;
 import validators.impl.ClothingActionOrdersValidator;

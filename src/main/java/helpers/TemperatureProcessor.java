@@ -1,4 +1,4 @@
-package factory;
+package helpers;
 
 import commands.Temperature;
 

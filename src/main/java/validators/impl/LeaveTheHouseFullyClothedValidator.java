@@ -11,20 +11,20 @@ import java.util.List;
 public class LeaveTheHouseFullyClothedValidator implements LeaveTheHouseValidator<Person>, ValidationElement<Person> {
     @Override
     public boolean canILeaveTheHouse(Person person) {
-        List<MorningActions> myClothes = person.getMyMorningActions();
-        if (!amILeavingTheHouseAndStillDressing(myClothes) &&
-            doIHaveTheCorrectAmountOfClothingActions(person)) {
+        List<MorningActions> morningActions = person.getMyMorningActions();
+        if (!amILeavingTheHouseAndStillDressing(morningActions) &&
+                doIHaveTheCorrectAmountOfClothingActions(person)) {
             return true;
         }
 
         return false;
     }
 
-    private boolean amILeavingTheHouseAndStillDressing(List<MorningActions> myClothes) {
+    private boolean amILeavingTheHouseAndStillDressing(List<MorningActions> morningActions) {
 
-        if (myClothes.size() > 0 &&
-            myClothes.contains(MorningActions.LEAVE_HOUSE) &&
-            myClothes.get(myClothes.size() - 1) != MorningActions.LEAVE_HOUSE) return true;
+        if (morningActions.size() > 0 &&
+                morningActions.contains(MorningActions.LEAVE_HOUSE) &&
+                morningActions.get(morningActions.size() - 1) != MorningActions.LEAVE_HOUSE) return true;
 
         return false;
     }
@@ -46,7 +46,21 @@ public class LeaveTheHouseFullyClothedValidator implements LeaveTheHouseValidato
     }
 
     @Override
-    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person domain) {
-        return 0;
+    public int findInvalidItemIndexOrReturnCollectionSizeIfValid(Person person) {
+        if (!validate(person)) {
+            List<MorningActions> morningActions = person.getMyMorningActions();
+
+            if (morningActions.size() > 0 &&
+                    morningActions.contains(MorningActions.LEAVE_HOUSE) &&
+                    morningActions.get(morningActions.size() - 1) != MorningActions.LEAVE_HOUSE)
+                return morningActions.indexOf(MorningActions.LEAVE_HOUSE);
+
+            if (morningActions.contains(MorningActions.LEAVE_HOUSE) &&
+                    !doIHaveTheCorrectAmountOfClothingActions(person))
+                return morningActions.indexOf(MorningActions.LEAVE_HOUSE);
+
+        }
+
+        return person.getMyMorningActions().size();
     }
 }
