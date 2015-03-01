@@ -1,8 +1,8 @@
 package validators.impl;
 
 import commands.MorningActions;
-import domains.Person;
 import commands.Temperature;
+import domains.Person;
 import validators.LeaveTheHouseValidator;
 import validators.ValidationElement;
 

@@ -2,9 +2,9 @@ package validators;
 
 
 import commands.MorningActions;
-import domains.Person;
 import commands.Temperature;
 import commands.Validation;
+import domains.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
